@@ -40,7 +40,7 @@ module.exports = {
     'no-trailing-spaces': [2, { skipBlankLines: true }],
     'no-multi-spaces': 'error',
     'no-undef': ['error', { typeof: true }],
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': ['error', 'always'],
     'eol-last': ['error', 'always'],
     'quote-props': ['error', 'as-needed']
   },
