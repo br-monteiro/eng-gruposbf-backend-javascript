@@ -21,7 +21,8 @@
   "homepage": "https://github.com/br-monteiro/eng-gruposbf-backend-javascript#readme",
   "dependencies": {
     "bole": "^5.0.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.0"
   },
   "devDependencies": {
     "chai": "^4.3.7",
