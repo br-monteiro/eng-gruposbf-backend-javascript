@@ -1,3 +1,4 @@
+const fetch = require('node-fetch')
 const RateProvider = require('./rate-provider')
 const logger = require('../logger')('rate/fixer-rate-provider')
 
