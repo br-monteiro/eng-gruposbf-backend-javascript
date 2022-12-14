@@ -22,7 +22,9 @@
   "dependencies": {
     "bole": "^5.0.1",
     "express": "^4.18.2",
-    "node-fetch": "^2.6.7"
+    "mergician": "^1.0.3",
+    "node-fetch": "^2.6.7",
+    "redis": "^4.5.1"
   },
   "devDependencies": {
     "chai": "^4.3.7",
