@@ -34,8 +34,8 @@ class RateManager {
   async getRate(currencyBase, currencyDestination) {
     return this.#cacheManager
             .get(currencyBase, currencyDestination)
-            .then(async (result) => {
-              if (result.status === this.#cacheManager.HIT) {
+            .then(result => {
+              if (result.status !== null) {
                 return result.value
               }
 
