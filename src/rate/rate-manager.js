@@ -34,12 +34,18 @@ class RateManager {
   async getRate(currencyBase, currencyDestination) {
     return this.#cacheManager
             .get(currencyBase, currencyDestination)
-            .then(result => {
-              if (result.status !== null) {
-                return result.value
+            .then(async (rate) => {
+              const result = {
+                origin: currencyBase,
+                destination: currencyDestination,
+                value: rate
               }
 
-              return this.#getRateFromProvider(currencyBase, currencyDestination)
+              if (rate === null) {
+                result.value = await this.#getRateFromProvider(currencyBase, currencyDestination)
+              }
+
+              return result
             })
 
   }
