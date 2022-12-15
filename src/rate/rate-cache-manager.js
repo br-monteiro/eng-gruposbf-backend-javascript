@@ -1,6 +1,6 @@
-const CacheManager = require('./cache-manager')
+const CacheManager = require('../cache/cache-manager')
 
-class Redis extends CacheManager {
+class RateCacheManager extends CacheManager {
   #currenciesContainer
   #cache
 
@@ -13,7 +13,7 @@ class Redis extends CacheManager {
   }
 
   #buildCacheKey(currencyBase, currencyDestination) {
-    return `${currencyBase.getId()}-${currencyDestination.getId()}`
+    return `${currencyBase}-${currencyDestination}`
   }
 
   async get(currencyBase, currencyDestination) {
@@ -22,7 +22,7 @@ class Redis extends CacheManager {
   }
 
   /**
-   * @param { import("../rate/rate-provider").CurrencyRateMap } currencyRateMap
+   * @param { import("./rate-provider").CurrencyRateMap } currencyRateMap
    */
   async updateRates(currencyRateMap) {
     if (!currencyRateMap?.rates?.size) return
@@ -36,4 +36,4 @@ class Redis extends CacheManager {
   }
 }
 
-module.exports = Redis
+module.exports = RateCacheManager
