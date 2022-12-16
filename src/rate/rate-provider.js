@@ -7,6 +7,9 @@
  */
 
 class RateProvider {
+  STATUS_SUCCESS = 'success'
+  STATUS_ERROR = 'error'
+
   constructor(baseUrl, apikey) {
     this.baseUrl = baseUrl
     this.apikey = apikey
