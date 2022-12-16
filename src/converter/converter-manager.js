@@ -38,8 +38,8 @@ class ConverterManager {
       return this.#buildConvertResultObject(this.STATUS_ERROR)
     }
 
-    const rates = this.currenciesContainer.getAllIds()
-      .reduce(async (accRates, id) => {
+    const rates = this.#currenciesContainer.getAllIds()
+      .reduce((accRates, id) => {
         if (id === currencyBase) return accRates
         accRates.push(this.#rateManager.getRate(currencyBase, id))
         return accRates
