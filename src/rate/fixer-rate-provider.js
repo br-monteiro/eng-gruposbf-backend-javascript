@@ -7,8 +7,8 @@ class FixerRateProvider extends RateProvider {
     super(baseUrl, apikey)
   }
 
-  buildUrl(currencyBase) {
-    return `${this.getBaseUrl()}?base=${currencyBase.getId()}`
+  #buildUrl(currencyBase) {
+    return `${this.getBaseUrl()}?base=${currencyBase}`
   }
 
   /**
