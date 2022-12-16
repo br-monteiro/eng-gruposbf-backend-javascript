@@ -7,12 +7,12 @@ class RateManager {
   /**
    * @param { Array<RateProvider> } poolRateProviders
    */
-  constructor(poolRateProviders, cacheManager) {
+  constructor (poolRateProviders, cacheManager) {
     this.#poolRateProviders = poolRateProviders
     this.#cacheManager = cacheManager
   }
 
-  async #getRateFromProvider(currencyBase, currencyDestination) {
+  async #getRateFromProvider (currencyBase, currencyDestination) {
     const providers = this.#poolRateProviders.map(async (provider) => {
       const result = await provider.fetch(currencyBase)
       return provider.map(result)
@@ -31,22 +31,22 @@ class RateManager {
       })
   }
 
-  async getRate(currencyBase, currencyDestination) {
+  async getRate (currencyBase, currencyDestination) {
     return this.#cacheManager
-            .get(currencyBase, currencyDestination)
-            .then(async (rate) => {
-              const result = {
-                origin: currencyBase,
-                destination: currencyDestination,
-                value: rate
-              }
+      .get(currencyBase, currencyDestination)
+      .then(async (rate) => {
+        const result = {
+          origin: currencyBase,
+          destination: currencyDestination,
+          value: rate
+        }
 
-              if (rate === null) {
-                result.value = await this.#getRateFromProvider(currencyBase, currencyDestination)
-              }
+        if (rate === null) {
+          result.value = await this.#getRateFromProvider(currencyBase, currencyDestination)
+        }
 
-              return result
-            })
+        return result
+      })
 
   }
 }

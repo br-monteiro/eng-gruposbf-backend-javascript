@@ -3,7 +3,7 @@ const mergician = require('mergician')
 
 const env = process.env.NODE_ENV || 'development'
 
-function mergeSettings(env) {
+function mergeSettings (env) {
   let settings = {}
 
   if (env === 'development') {

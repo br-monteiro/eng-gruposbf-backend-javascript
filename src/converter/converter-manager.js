@@ -12,14 +12,14 @@ class ConverterManager {
     this.#rateManager = rateManager
   }
 
-  #buildConvertResultObject(status) {
+  #buildConvertResultObject (status) {
     return {
       status,
       rates: {}
     }
   }
 
-  async #buildConvertResultMap(rates, value) {
+  async #buildConvertResultMap (rates, value) {
     return rates.reduce((ratesMap, rate) => {
       const currency = this.#currenciesContainer.getCurrency(rate.origin)
 
