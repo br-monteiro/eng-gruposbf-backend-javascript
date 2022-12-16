@@ -15,7 +15,9 @@ function get (key) {
 }
 
 function set (key, value) {
-  return client.setEx(key, cache.ttl, value)
+  return client.set(key, value, {
+    EX: cache.ttl
+  })
 }
 
 module.exports = {
