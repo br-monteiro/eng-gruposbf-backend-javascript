@@ -8,6 +8,7 @@ class RateCacheManager extends CacheManager {
    * @param { import("../currency/currencies-container") } currenciesContainer
    */
   constructor(cacheClient, currenciesContainer) {
+    super()
     this.#currenciesContainer = currenciesContainer
     this.#cache = cacheClient
   }
