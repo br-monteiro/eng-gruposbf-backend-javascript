@@ -18,7 +18,8 @@ class AbstractCurrency {
   }
 
   convert(value, rate) {
-    return value * rate
+    const result = value * rate
+    return Number(result.toFixed(2))
   }
 }
 
