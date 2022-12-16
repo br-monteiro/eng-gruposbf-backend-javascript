@@ -16,7 +16,7 @@ class FixerRateProvider extends RateProvider {
    * @returns { Promise }
    */
   async fetch (currencyBase) {
-    return fetch(this.buildUrl(currencyBase), {
+    return fetch(this.#buildUrl(currencyBase), {
       headers: {
         apikey: this.getApikey()
       }
