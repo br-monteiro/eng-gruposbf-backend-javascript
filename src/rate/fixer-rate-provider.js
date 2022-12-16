@@ -25,7 +25,7 @@ class FixerRateProvider extends RateProvider {
       .catch(error => {
         logger.error('error to try fetch the rates from Fixer API', error)
         return {
-          status: 'error'
+          status: this.STATUS_ERROR
         }
       })
   }
