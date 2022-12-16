@@ -20,7 +20,7 @@ class RateManager {
 
     return Promise.any(providers)
       .then(async (result) => {
-        const rateValue = result?.rates?.get(currencyDestination.getId()) || 0
+        const rateValue = result?.rates?.get(currencyDestination) || 0
 
         await this.#cacheManager.updateRates(result)
         return rateValue
