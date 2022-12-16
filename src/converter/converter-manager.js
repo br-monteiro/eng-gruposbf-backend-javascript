@@ -20,11 +20,11 @@ class ConverterManager {
   }
 
   async #buildConvertResultMap(rates, value) {
-    rates.reduce((ratesMap, rate) => {
+    return rates.reduce((ratesMap, rate) => {
       const currency = this.#currenciesContainer.getCurrency(rate.origin)
 
       if (currency) {
-        ratesMap[rate.destination] = currency.convert(value, rate.value)
+        ratesMap.rates[rate.destination] = currency.convert(value, Number(rate.value))
       }
 
       return ratesMap
@@ -38,15 +38,15 @@ class ConverterManager {
       return this.#buildConvertResultObject(this.STATUS_ERROR)
     }
 
-    const rates = this.currenciesContainer.getAllIds()
-      .reduce(async (accRates, id) => {
+    const rates = this.#currenciesContainer.getAllIds()
+      .reduce((accRates, id) => {
         if (id === currencyBase) return accRates
         accRates.push(this.#rateManager.getRate(currencyBase, id))
         return accRates
       }, [])
 
     return Promise.all(rates)
-      .then(async (result) => await this.#buildConvertResultMap(result))
+      .then(async (result) => await this.#buildConvertResultMap(result, value))
       .catch(error => {
         logger.error(`error to try convert ${currencyBase} ${value}`, error)
         return this.#buildConvertResultObject(this.STATUS_ERROR)

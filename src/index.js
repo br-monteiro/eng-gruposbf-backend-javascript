@@ -9,7 +9,7 @@ const RateCacheManager = require('./rate/rate-cache-manager')
 const RateManager = require('./rate/rate-manager')
 
 const poolRateProviders = [
-  new FixerRateProvider(rateProviders.fixer.baseUrl, process.env.APIKEY)
+  new FixerRateProvider(rateProviders.fixer.baseUrl, process.env.FIXER_APIKEY)
 ]
 
 const currenciesContainer = new CurrenciesContainer()

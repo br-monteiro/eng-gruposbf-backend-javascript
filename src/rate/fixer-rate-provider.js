@@ -7,8 +7,8 @@ class FixerRateProvider extends RateProvider {
     super(baseUrl, apikey)
   }
 
-  buildUrl(currencyBase) {
-    return `${this.getBaseUrl()}?base=${currencyBase.getId()}`
+  #buildUrl(currencyBase) {
+    return `${this.getBaseUrl()}?base=${currencyBase}`
   }
 
   /**
@@ -16,7 +16,7 @@ class FixerRateProvider extends RateProvider {
    * @returns { Promise }
    */
   async fetch (currencyBase) {
-    return fetch(this.buildUrl(currencyBase), {
+    return fetch(this.#buildUrl(currencyBase), {
       headers: {
         apikey: this.getApikey()
       }
@@ -25,7 +25,7 @@ class FixerRateProvider extends RateProvider {
       .catch(error => {
         logger.error('error to try fetch the rates from Fixer API', error)
         return {
-          status: 'error'
+          status: this.STATUS_ERROR
         }
       })
   }

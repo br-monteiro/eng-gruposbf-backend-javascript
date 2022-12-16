@@ -15,12 +15,12 @@ class RateManager {
   async #getRateFromProvider(currencyBase, currencyDestination) {
     const providers = this.#poolRateProviders.map(async (provider) => {
       const result = await provider.fetch(currencyBase)
-      return this.#poolRateProviders.map(result)
+      return provider.map(result)
     })
 
     return Promise.any(providers)
       .then(async (result) => {
-        const rateValue = result?.rates?.get(currencyDestination.getId()) || 0
+        const rateValue = result?.rates?.get(currencyDestination) || 0
 
         await this.#cacheManager.updateRates(result)
         return rateValue
