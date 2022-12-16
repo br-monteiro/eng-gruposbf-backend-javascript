@@ -46,7 +46,7 @@ class ConverterManager {
       }, [])
 
     return Promise.all(rates)
-      .then(async (result) => await this.#buildConvertResultMap(result))
+      .then(async (result) => await this.#buildConvertResultMap(result, value))
       .catch(error => {
         logger.error(`error to try convert ${currencyBase} ${value}`, error)
         return this.#buildConvertResultObject(this.STATUS_ERROR)
