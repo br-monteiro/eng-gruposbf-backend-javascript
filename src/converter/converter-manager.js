@@ -20,11 +20,11 @@ class ConverterManager {
   }
 
   async #buildConvertResultMap(rates, value) {
-    rates.reduce((ratesMap, rate) => {
+    return rates.reduce((ratesMap, rate) => {
       const currency = this.#currenciesContainer.getCurrency(rate.origin)
 
       if (currency) {
-        ratesMap[rate.destination] = currency.convert(value, rate.value)
+        ratesMap.rates[rate.destination] = currency.convert(value, Number(rate.value))
       }
 
       return ratesMap
