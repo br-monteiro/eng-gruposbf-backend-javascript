@@ -7,17 +7,17 @@ class RateCacheManager extends CacheManager {
   /**
    * @param { import("../currency/currencies-container") } currenciesContainer
    */
-  constructor(cacheClient, currenciesContainer) {
+  constructor (cacheClient, currenciesContainer) {
     super()
     this.#currenciesContainer = currenciesContainer
     this.#cache = cacheClient
   }
 
-  #buildCacheKey(currencyBase, currencyDestination) {
+  #buildCacheKey (currencyBase, currencyDestination) {
     return `${currencyBase}-${currencyDestination}`
   }
 
-  async get(currencyBase, currencyDestination) {
+  async get (currencyBase, currencyDestination) {
     const cacheKey = this.#buildCacheKey(currencyBase, currencyDestination)
     return this.#cache.get(cacheKey)
   }
@@ -25,7 +25,7 @@ class RateCacheManager extends CacheManager {
   /**
    * @param { import("./rate-provider").CurrencyRateMap } currencyRateMap
    */
-  async updateRates(currencyRateMap) {
+  async updateRates (currencyRateMap) {
     if (!currencyRateMap?.rates?.size) return
 
     this.#currenciesContainer

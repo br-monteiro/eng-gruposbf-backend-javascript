@@ -3,11 +3,11 @@ const AbstractCurrency = require('./abstract-currency')
 class CurrenciesContainer {
   #currencies
 
-  constructor() {
+  constructor () {
     this.#currencies = new Map()
   }
 
-  setCurrency(currency) {
+  setCurrency (currency) {
     if (!currency instanceof AbstractCurrency) {
       throw new Error('Currency must to be an AbstractCurrency implementation')
     }
@@ -17,15 +17,15 @@ class CurrenciesContainer {
     return this
   }
 
-  getCurrency(id) {
+  getCurrency (id) {
     return this.#currencies.get(id)
   }
 
-  hasCurrency(id) {
+  hasCurrency (id) {
     return this.#currencies.has(id)
   }
 
-  getAllIds() {
+  getAllIds () {
     return Array.from(this.#currencies.keys())
   }
 }

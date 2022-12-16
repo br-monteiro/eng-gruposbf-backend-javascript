@@ -13,7 +13,7 @@ describe('currency - currencies-container', () => {
 
     it('should not throws an error when try to set a currency that implements AbstractCurrency', () => {
       const currency = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('BRL')
         }
       }
@@ -24,17 +24,17 @@ describe('currency - currencies-container', () => {
 
     it('should set the currency on container map', () => {
       const brl = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('BRL')
         }
       }
       const usd = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('USD')
         }
       }
       const eur = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('EUR')
         }
       }
@@ -56,7 +56,7 @@ describe('currency - currencies-container', () => {
   describe('#getCurrency', () => {
     it('should returns the currency object according ID', () => {
       const brl = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('BRL')
         }
       }
@@ -78,7 +78,7 @@ describe('currency - currencies-container', () => {
   describe('#hasCurrency', () => {
     it('should returns true when there is currency reference for the ID', () => {
       const brl = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('BRL')
         }
       }
@@ -100,17 +100,17 @@ describe('currency - currencies-container', () => {
   describe('#getAllIds', () => {
     it('should returns an array with all currencies id', () => {
       const brl = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('BRL')
         }
       }
       const usd = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('USD')
         }
       }
       const eur = new class extends AbstractCurrency {
-        constructor() {
+        constructor () {
           super('EUR')
         }
       }

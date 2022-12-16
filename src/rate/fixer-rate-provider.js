@@ -3,11 +3,11 @@ const RateProvider = require('./rate-provider')
 const logger = require('../logger')('rate/fixer-rate-provider')
 
 class FixerRateProvider extends RateProvider {
-  constructor(baseUrl, apikey) {
+  constructor (baseUrl, apikey) {
     super(baseUrl, apikey)
   }
 
-  #buildUrl(currencyBase) {
+  #buildUrl (currencyBase) {
     return `${this.getBaseUrl()}?base=${currencyBase}`
   }
 

@@ -8,6 +8,4 @@ function buildRoute (currenciesContainer, converter) {
   return router
 }
 
-
-
 module.exports = buildRoute

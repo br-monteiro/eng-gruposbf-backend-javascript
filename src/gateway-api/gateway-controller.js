@@ -32,7 +32,7 @@ function buildConverterAction (currenciesContainer, converter) {
 
       return res.status(500).send({
         status: RESULT_STATUS_ERROR,
-        message: `something went wrong =/`
+        message: 'something went wrong =/'
       })
     }
 

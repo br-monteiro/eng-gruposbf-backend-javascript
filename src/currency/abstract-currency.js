@@ -1,11 +1,11 @@
 class AbstractCurrency {
   #id
 
-  constructor(id) {
+  constructor (id) {
     this.#id = this.#normalizeId(id)
   }
 
-  #normalizeId(id) {
+  #normalizeId (id) {
     if (!id || typeof id != 'string') {
       throw new Error('The ID value must be a valid string')
     }
@@ -13,11 +13,11 @@ class AbstractCurrency {
     return id.toUpperCase()
   }
 
-  getId() {
+  getId () {
     return this.#id
   }
 
-  convert(value, rate) {
+  convert (value, rate) {
     const result = value * rate
     return Number(result.toFixed(2))
   }
