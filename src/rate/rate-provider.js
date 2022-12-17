@@ -2,7 +2,6 @@
  * @typedef CurrencyRateMap
  * @property { string } base
  * @property { Date } rateDate
- * @property { Date } requestDate
  * @property { Map<string, number> } rates
  */
 
