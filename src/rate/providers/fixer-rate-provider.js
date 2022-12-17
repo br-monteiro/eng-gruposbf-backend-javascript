@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
-const RateProvider = require('./rate-provider')
-const logger = require('../logger')('rate/fixer-rate-provider')
+const RateProvider = require('../rate-provider')
+const logger = require('../../logger')('rate/fixer-rate-provider')
 
 class FixerRateProvider extends RateProvider {
   constructor (baseUrl, apikey) {
@@ -32,7 +32,7 @@ class FixerRateProvider extends RateProvider {
 
   /**
    * @param { string } currencyBase - The currency base avlue
-   * @returns { Promise<import("./rate-provider").CurrencyRateMap> }
+   * @returns { Promise<import("../rate-provider").CurrencyRateMap> }
    */
   async map (data) {
     if (!data || data?.status === 'error') {
