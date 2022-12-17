@@ -4,7 +4,7 @@ const { rateProviders } = require('./configs')
 const ConverterManager = require('./converter/converter-manager')
 const AbstractCurrency = require('./currency/abstract-currency')
 const CurrenciesContainer = require('./currency/currencies-container')
-const FixerRateProvider = require('./rate/fixer-rate-provider')
+const FixerRateProvider = require('./rate/providers/fixer-rate-provider')
 const RateCacheManager = require('./rate/rate-cache-manager')
 const RateManager = require('./rate/rate-manager')
 
