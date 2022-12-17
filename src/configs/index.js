@@ -1,18 +1,16 @@
-const defaultSettings = require('./default')
 const mergician = require('mergician')
+const defaultSettings = require('./default')
+const devSettings = require('./development')
+const prodSettings = require('./production')
 
 const env = process.env.NODE_ENV || 'development'
 
+/**
+ * @param { string } env
+ * @returns { Object }
+ */
 function mergeSettings (env) {
-  let settings = {}
-
-  if (env === 'development') {
-    settings = require('./development')
-  }
-
-  if (env === 'production') {
-    settings = require('./production')
-  }
+  const settings = env === 'production' ? prodSettings : devSettings
 
   return mergician(defaultSettings, settings)
 }
