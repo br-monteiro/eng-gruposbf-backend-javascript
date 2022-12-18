@@ -36,14 +36,13 @@ describe('rate - rate-manager', () => {
       .withArgs('BRL-INR')
       .resolves(null)
 
-
     poolRateProvidersMock = [
       new class {
-        async fetch() {
+        async fetch () {
           return Promise.resolve()
         }
 
-        async map() {
+        async map () {
           return Promise.resolve({
             base: 'BRL',
             rates: new Map([['BRL', 1], ['USD', 10], ['EUR', 100]])
@@ -126,20 +125,20 @@ describe('rate - rate-manager', () => {
 
       poolRateProvidersMock = [
         new class {
-          async fetch() {
+          async fetch () {
             return Promise.reject()
           }
 
-          async map() {
+          async map () {
             return Promise.reject()
           }
         },
         new class {
-          async fetch() {
+          async fetch () {
             return Promise.reject()
           }
 
-          async map() {
+          async map () {
             return Promise.reject()
           }
         }

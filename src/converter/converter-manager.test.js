@@ -24,11 +24,11 @@ describe('converter - converter-manager', () => {
 
     poolRateProvidersMock = [
       new class {
-        async fetch() {
+        async fetch () {
           return Promise.resolve()
         }
 
-        async map() {
+        async map () {
           return Promise.resolve({
             base: 'BRL',
             rates: new Map([['BRL', 1], ['USD', 10]])

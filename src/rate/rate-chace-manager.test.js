@@ -30,7 +30,6 @@ describe('rate - rate-cache-manager', () => {
       .withArgs('BRL-EUR')
       .resolves(null)
 
-
     currenciesContainer = new CurrenciesContainer()
     currenciesContainer
       .setCurrency(new AbstractCurrency('BRL'))
