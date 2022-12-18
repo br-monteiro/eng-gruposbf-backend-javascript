@@ -1,6 +1,6 @@
-const fetch = require('node-fetch')
-const RateProvider = require('./rate-provider')
-const logger = require('../logger')('rate/fixer-rate-provider')
+const axios = require('axios')
+const RateProvider = require('../rate-provider')
+const logger = require('../../logger')('rate/fixer-rate-provider')
 
 class FixerRateProvider extends RateProvider {
   constructor (baseUrl, apikey) {
@@ -16,12 +16,12 @@ class FixerRateProvider extends RateProvider {
    * @returns { Promise }
    */
   async fetch (currencyBase) {
-    return fetch(this.#buildUrl(currencyBase), {
+    return axios.get(this.#buildUrl(currencyBase), {
       headers: {
         apikey: this.getApikey()
       }
     })
-      .then(res => res.json())
+      .then(res => res.data)
       .catch(error => {
         logger.error('error to try fetch the rates from Fixer API', error)
         return {
@@ -32,18 +32,23 @@ class FixerRateProvider extends RateProvider {
 
   /**
    * @param { string } currencyBase - The currency base avlue
-   * @returns { Promise<import("./rate-provider").CurrencyRateMap> }
+   * @returns { Promise<import("../rate-provider").CurrencyRateMap> }
    */
   async map (data) {
-    if (!data || data?.status === 'error') {
-      logger.error('error to try map data to CurrencyRateMap')
+    if (
+      !data ||
+      data?.status === 'error' ||
+      !data?.base ||
+      !data?.timestamp ||
+      !data?.rates
+    ) {
+      logger.error('error to try map data to CurrencyRateMap', { data })
       return {}
     }
 
     return {
       base: data.base,
       rateDate: new Date(data.timestamp),
-      requestDate: new Date(),
       rates: new Map(Object.entries(data.rates))
     }
   }

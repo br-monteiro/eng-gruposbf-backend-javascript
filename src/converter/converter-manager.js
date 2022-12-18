@@ -1,5 +1,10 @@
 const logger = require('../logger')('converter/converter')
 
+/**
+ * @typedef ConvertResult
+ * @property { string } status
+ * @property { Object.<string, string> } rates
+ */
 class ConverterManager {
   STATUS_ERROR = 'error'
   STATUS_SUCCESS = 'success'
@@ -7,11 +12,19 @@ class ConverterManager {
   #currenciesContainer
   #rateManager
 
+  /**
+   * @param { CurrenciesContainer } currenciesContainer
+   * @param { RateCacheManager } rateManager
+   */
   constructor (currenciesContainer, rateManager) {
     this.#currenciesContainer = currenciesContainer
     this.#rateManager = rateManager
   }
 
+  /**
+   * @param { string } status
+   * @returns { ConvertResult }
+   */
   #buildConvertResultObject (status) {
     return {
       status,
@@ -19,6 +32,11 @@ class ConverterManager {
     }
   }
 
+  /**
+   * @param { Array<RateValue> } rates
+   * @param { number } value
+   * @returns { ConvertResult }
+   */
   async #buildConvertResultMap (rates, value) {
     return rates.reduce((ratesMap, rate) => {
       const currency = this.#currenciesContainer.getCurrency(rate.origin)
@@ -31,6 +49,11 @@ class ConverterManager {
     }, this.#buildConvertResultObject(this.STATUS_SUCCESS))
   }
 
+  /**
+   * @param { string } currencyBase
+   * @param { number } value
+   * @returns { ConvertResult }
+   */
   async convert (currencyBase, value) {
     if (!this.#currenciesContainer.hasCurrency(currencyBase)) {
       logger.error(`the currency ${currencyBase} is not allowed to be converted`)

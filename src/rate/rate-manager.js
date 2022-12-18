@@ -47,7 +47,6 @@ class RateManager {
 
         return result
       })
-
   }
 }
 

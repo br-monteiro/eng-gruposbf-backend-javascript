@@ -71,6 +71,10 @@ class Logger {
   error (message = '', info = {}) {
     this._error.log(message, info)
   }
+
+  reset () {
+    return bole.reset()
+  }
 }
 
 module.exports = Logger
