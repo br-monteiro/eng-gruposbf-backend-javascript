@@ -2,7 +2,12 @@ const logger = require('../logger')('chache/redis-client')
 const { cache } = require('../configs')
 const { createClient } = require('redis')
 
-const client = createClient()
+const client = createClient({
+  socket: {
+    port: cache.port,
+    host: cache.host
+  }
+})
 
 client.on('error', (error) => logger.error('redis client error', error))
 client
