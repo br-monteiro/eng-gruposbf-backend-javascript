@@ -4,12 +4,14 @@ const { rateProviders } = require('./configs')
 const ConverterManager = require('./converter/converter-manager')
 const AbstractCurrency = require('./currency/abstract-currency')
 const CurrenciesContainer = require('./currency/currencies-container')
+const FakeRateProvider = require('./rate/providers/fake-rate-provider')
 const FixerRateProvider = require('./rate/providers/fixer-rate-provider')
 const RateCacheManager = require('./rate/rate-cache-manager')
 const RateManager = require('./rate/rate-manager')
 
 const poolRateProviders = [
-  new FixerRateProvider(rateProviders.fixer.baseUrl, process.env.FIXER_APIKEY)
+  new FixerRateProvider(rateProviders.fixer.baseUrl, process.env.FIXER_APIKEY),
+  new FakeRateProvider(rateProviders.fake.baseUrl)
 ]
 
 const currenciesContainer = new CurrenciesContainer()
