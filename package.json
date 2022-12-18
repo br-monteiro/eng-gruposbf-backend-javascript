@@ -4,7 +4,7 @@
   "description": "Technical Challenge of Grupo SBF",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha --recursive \"src/**/*.test.js\"",
+    "test": "mocha --parallel --recursive \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch --inline-diffs",
     "lint": "node ./node_modules/.bin/eslint src/**/*.js",
     "start": "node ./src/server.js"
