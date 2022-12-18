@@ -21,7 +21,7 @@ class RateProvider {
   /**
    * @return { CurrencyRateMap }
    */
-  async map (_data) {
+  async resultAdapter (_data) {
     throw new Error('Method not implemented')
   }
 

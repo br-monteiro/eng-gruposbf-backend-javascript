@@ -28,7 +28,7 @@ describe('converter - converter-manager', () => {
           return Promise.resolve()
         }
 
-        async map () {
+        async resultAdapter () {
           return Promise.resolve({
             base: 'BRL',
             rates: new Map([['BRL', 1], ['USD', 10]])
