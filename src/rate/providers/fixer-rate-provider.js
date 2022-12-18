@@ -26,8 +26,8 @@ class FixerRateProvider extends RateProvider {
         logger.info(`get rates from FIXER provider for currency base ${currencyBase}`)
         return res.data
       })
-      .catch(error => {
-        logger.error('error to try fetch the rates from Fixer API', error)
+      .catch(({ message }) => {
+        logger.error('error to try fetch the rates from Fixer API', { message })
         return {
           status: this.STATUS_ERROR
         }
