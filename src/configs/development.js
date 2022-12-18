@@ -1,13 +1,13 @@
 const config = {
   rateProviders: {
     fixer: {
-      baseUrl: 'https://api.apilayer.com/fixer/latest'
+      baseUrl: 'http://dev.myworkplace.com:3001/'
     }
   },
   cache: {
-    host: 'redis',
+    host: 'localhost',
     port: 6379,
-    ttl: 300, // time in seconds
+    ttl: 10, // time in seconds
   }
 }
 

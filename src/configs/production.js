@@ -5,9 +5,9 @@ const config = {
     }
   },
   cache: {
-    host: 'redis',
+    host: 'localhost',
     port: 6379,
-    ttl: 300, // time in seconds
+    ttl: 300, // time in seconds | 5 minutes
   }
 }
 

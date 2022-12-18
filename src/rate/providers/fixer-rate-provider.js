@@ -18,10 +18,14 @@ class FixerRateProvider extends RateProvider {
   async fetch (currencyBase) {
     return axios.get(this.#buildUrl(currencyBase), {
       headers: {
-        apikey: this.getApikey()
+        apikey: this.getApikey(),
+        'Accept-Encoding': 'gzip,deflate,compress'
       }
     })
-      .then(res => res.data)
+      .then(res => {
+        logger.info(`get rates from FIXER provider for currency base ${currencyBase}`)
+        return res.data
+      })
       .catch(error => {
         logger.error('error to try fetch the rates from Fixer API', error)
         return {

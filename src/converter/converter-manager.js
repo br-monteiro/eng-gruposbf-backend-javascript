@@ -61,6 +61,9 @@ class ConverterManager {
       return this.#buildConvertResultObject(this.STATUS_ERROR)
     }
 
+    // perform the first request to populate the cache
+    await this.#rateManager.getRate(currencyBase, currencyBase)
+
     const rates = this.#currenciesContainer.getAllIds()
       .reduce((accRates, id) => {
         if (id === currencyBase) return accRates

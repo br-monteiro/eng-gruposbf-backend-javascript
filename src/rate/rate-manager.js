@@ -43,6 +43,9 @@ class RateManager {
 
         if (rate === null) {
           result.value = await this.#getRateFromProvider(currencyBase, currencyDestination)
+          logger.info('get rate from rate provider', result)
+        } else {
+          logger.info('get rate from cache', result)
         }
 
         return result

@@ -4,3 +4,15 @@ services:
     image: "redis:alpine"
     ports:
       - "6379:6379"
+  app:
+    build: .
+    expose:
+      - 3001
+    ports:
+      - "3000:3000"
+    environment:
+      - FIXER_APIKEY=${FIXER_APIKEY}
+      - NODE_ENV=${NODE_ENV}
+    depends_on:
+      - redis
+    network_mode: "host"
