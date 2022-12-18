@@ -26,6 +26,8 @@ const converter = new ConverterManager(currenciesContainer, rateManager)
 
 const app = express()
 
+app.use(require('express-status-monitor')())
+
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/v1', require('./gateway-api/router')(currenciesContainer, converter))
