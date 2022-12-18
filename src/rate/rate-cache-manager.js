@@ -5,6 +5,7 @@ class RateCacheManager extends CacheManager {
   #cache
 
   /**
+   * @param { import("../cache/redis-client") } cacheClient
    * @param { import("../currency/currencies-container") } currenciesContainer
    */
   constructor (cacheClient, currenciesContainer) {
@@ -17,6 +18,11 @@ class RateCacheManager extends CacheManager {
     return `${currencyBase}-${currencyDestination}`
   }
 
+  /**
+   * @param { string } currencyBase
+   * @param { string } currencyDestination
+   * @returns { string | null }
+   */
   async get (currencyBase, currencyDestination) {
     const cacheKey = this.#buildCacheKey(currencyBase, currencyDestination)
     return this.#cache.get(cacheKey)
