@@ -7,7 +7,12 @@ const FixerRateProvider = require('./fixer-rate-provider')
 
 const BASE_URL = 'https://api.apilayer.com/fixer/latest'
 const APIKEY = 'AÇAÍ-PURO'
-const headers = { headers: { apikey: APIKEY }}
+const headers = {
+  headers: {
+    apikey: APIKEY,
+    'Accept-Encoding': 'gzip,deflate,compress'
+  }
+}
 
 describe('rate - providers - fixer-rate-provider', () => {
   let fixerProvider
