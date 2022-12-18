@@ -113,7 +113,7 @@ describe('rate - rate-manager', () => {
       const result = await rateManager.getRate('BRL', 'INR')
 
       assert.deepStrictEqual(result, expected)
-      assert(rateCacheManager.updateRates.calledOnce)
+      assert(rateCacheManager.updateRates.notCalled)
     })
 
     it('should returns 0 when all providers fails', async () => {

@@ -22,7 +22,10 @@ class RateManager {
       .then(async (result) => {
         const rateValue = result?.rates?.get(currencyDestination) || 0
 
-        await this.#cacheManager.updateRates(result)
+        if (rateValue) {
+          await this.#cacheManager.updateRates(result)
+        }
+
         return rateValue
       })
       .catch(error => {

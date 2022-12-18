@@ -69,7 +69,7 @@ describe('rate - providers - fixer-rate-provider', () => {
       sinon
       .stub(axios, 'get')
       .withArgs(`${BASE_URL}?base=BRL`, headers)
-      .callsFake(() => Promise.reject())
+      .callsFake(() => Promise.reject({ message: 'fails' }))
 
       const result = await fixerProvider.fetch('BRL')
 
@@ -98,12 +98,26 @@ describe('rate - providers - fixer-rate-provider', () => {
       assert.deepStrictEqual(await fixerProvider.resultAdapter(data), expected)
     })
 
-    it('should returns a empty object when the data parameter is not valid', async () => {
-      assert.deepStrictEqual(await fixerProvider.resultAdapter(), {})
-      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'error'}), {})
-      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'success'}), {})
-      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'success', base: 'BRL'}), {})
-      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'success', base: 'BRL', timestamp: 1}), {})
+    it('should returns an rejected promise when the data parameter is not valid', async () => {
+      await fixerProvider
+      .resultAdapter()
+      .catch(err => assert.deepStrictEqual(err, undefined))
+
+      await fixerProvider
+      .resultAdapter({ status: 'error'})
+      .catch(err => assert.deepStrictEqual(err, { status: 'error'}))
+
+      await fixerProvider
+      .resultAdapter({ status: 'success'})
+      .catch(err => assert.deepStrictEqual(err, { status: 'success'}))
+
+      await fixerProvider
+      .resultAdapter({ status: 'success', base: 'BRL'})
+      .catch(err => assert.deepStrictEqual(err, { status: 'success', base: 'BRL'}))
+
+      await fixerProvider
+      .resultAdapter({ status: 'success', base: 'BRL', timestamp: 1})
+      .catch(err => assert.deepStrictEqual(err, { status: 'success', base: 'BRL', timestamp: 1}))
     })
   })
 })

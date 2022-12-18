@@ -2,13 +2,9 @@ const axios = require('axios')
 const RateProvider = require('../rate-provider')
 const logger = require('../../logger')('rate/fixer-rate-provider')
 
-class FixerRateProvider extends RateProvider {
+class FakeRateProvider extends RateProvider {
   constructor (baseUrl, apikey) {
     super(baseUrl, apikey)
-  }
-
-  #buildUrl (currencyBase) {
-    return `${this.getBaseUrl()}?base=${currencyBase}`
   }
 
   /**
@@ -16,18 +12,19 @@ class FixerRateProvider extends RateProvider {
    * @returns { Promise }
    */
   async fetch (currencyBase) {
-    return axios.get(this.#buildUrl(currencyBase), {
+    return axios.get(this.getBaseUrl(), {
       headers: {
-        apikey: this.getApikey(),
         'Accept-Encoding': 'gzip,deflate,compress'
       }
     })
       .then(res => {
-        logger.info(`get rates from FIXER provider for currency base ${currencyBase}`)
+        logger.info(`get rates from FAKE provider for currency base ${currencyBase}`)
+        res.data.base = currencyBase
+
         return res.data
       })
-      .catch(({ message }) => {
-        logger.error('error to try fetch the rates from Fixer API', { message })
+      .catch(error => {
+        logger.error('error to try fetch the rates from FAKE API', error)
         return {
           status: this.STATUS_ERROR
         }
@@ -46,8 +43,8 @@ class FixerRateProvider extends RateProvider {
       !data?.timestamp ||
       !data?.rates
     ) {
-      logger.error('error to try resultAdapter data to CurrencyRateMap from Fixer API', data)
-      return Promise.reject(data)
+      logger.error('error to try resultAdapter data to CurrencyRateMap from Fake API', { data })
+      return Promise.reject({ data, test: 1 })
     }
 
     return {
@@ -58,4 +55,4 @@ class FixerRateProvider extends RateProvider {
   }
 }
 
-module.exports = FixerRateProvider
+module.exports = FakeRateProvider
