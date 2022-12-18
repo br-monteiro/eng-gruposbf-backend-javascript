@@ -1,7 +1,7 @@
 const config = {
   rateProviders: {
     fixer: {
-      baseUrl: 'https://api.apilayer.com/fixer/latest'
+      baseUrl: 'http://localhost:3001/'
     }
   },
   cache: {
