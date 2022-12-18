@@ -46,8 +46,8 @@ class FixerRateProvider extends RateProvider {
       !data?.timestamp ||
       !data?.rates
     ) {
-      logger.error('error to try resultAdapter data to CurrencyRateMap from Fixer API', { data })
-      return Promise.reject({ data })
+      logger.error('error to try resultAdapter data to CurrencyRateMap from Fixer API', data)
+      return Promise.reject(data)
     }
 
     return {
