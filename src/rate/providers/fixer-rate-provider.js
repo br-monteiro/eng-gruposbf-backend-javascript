@@ -18,7 +18,8 @@ class FixerRateProvider extends RateProvider {
   async fetch (currencyBase) {
     return axios.get(this.#buildUrl(currencyBase), {
       headers: {
-        apikey: this.getApikey()
+        apikey: this.getApikey(),
+        'Accept-Encoding': 'gzip,deflate,compress'
       }
     })
       .then(res => res.data)
