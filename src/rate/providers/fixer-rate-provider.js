@@ -38,7 +38,7 @@ class FixerRateProvider extends RateProvider {
    * @param { string } currencyBase - The currency base avlue
    * @returns { Promise<import("../rate-provider").CurrencyRateMap> }
    */
-  async map (data) {
+  async resultAdapter (data) {
     if (
       !data ||
       data?.status === 'error' ||
@@ -46,7 +46,7 @@ class FixerRateProvider extends RateProvider {
       !data?.timestamp ||
       !data?.rates
     ) {
-      logger.error('error to try map data to CurrencyRateMap', { data })
+      logger.error('error to try resultAdapter data to CurrencyRateMap', { data })
       return {}
     }
 

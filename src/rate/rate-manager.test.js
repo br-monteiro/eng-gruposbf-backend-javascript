@@ -42,7 +42,7 @@ describe('rate - rate-manager', () => {
           return Promise.resolve()
         }
 
-        async map () {
+        async resultAdapter () {
           return Promise.resolve({
             base: 'BRL',
             rates: new Map([['BRL', 1], ['USD', 10], ['EUR', 100]])
@@ -129,7 +129,7 @@ describe('rate - rate-manager', () => {
             return Promise.reject()
           }
 
-          async map () {
+          async resultAdapter () {
             return Promise.reject()
           }
         },
@@ -138,7 +138,7 @@ describe('rate - rate-manager', () => {
             return Promise.reject()
           }
 
-          async map () {
+          async resultAdapter () {
             return Promise.reject()
           }
         }

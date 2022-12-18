@@ -7,7 +7,12 @@ const FixerRateProvider = require('./fixer-rate-provider')
 
 const BASE_URL = 'https://api.apilayer.com/fixer/latest'
 const APIKEY = 'AÇAÍ-PURO'
-const headers = { headers: { apikey: APIKEY }}
+const headers = {
+  headers: {
+    apikey: APIKEY,
+    'Accept-Encoding': 'gzip,deflate,compress'
+  }
+}
 
 describe('rate - providers - fixer-rate-provider', () => {
   let fixerProvider
@@ -72,7 +77,7 @@ describe('rate - providers - fixer-rate-provider', () => {
     })
   })
 
-  describe('#map', () => {
+  describe('#resultAdapter', () => {
     it('should returns a CurrencyRateMap object according data parameter', async () => {
       const data = {
         status: 'success',
@@ -90,15 +95,15 @@ describe('rate - providers - fixer-rate-provider', () => {
         rates: new Map([['BRL', 1], ['USD', 5]])
       }
 
-      assert.deepStrictEqual(await fixerProvider.map(data), expected)
+      assert.deepStrictEqual(await fixerProvider.resultAdapter(data), expected)
     })
 
     it('should returns a empty object when the data parameter is not valid', async () => {
-      assert.deepStrictEqual(await fixerProvider.map(), {})
-      assert.deepStrictEqual(await fixerProvider.map({ status: 'error'}), {})
-      assert.deepStrictEqual(await fixerProvider.map({ status: 'success'}), {})
-      assert.deepStrictEqual(await fixerProvider.map({ status: 'success', base: 'BRL'}), {})
-      assert.deepStrictEqual(await fixerProvider.map({ status: 'success', base: 'BRL', timestamp: 1}), {})
+      assert.deepStrictEqual(await fixerProvider.resultAdapter(), {})
+      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'error'}), {})
+      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'success'}), {})
+      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'success', base: 'BRL'}), {})
+      assert.deepStrictEqual(await fixerProvider.resultAdapter({ status: 'success', base: 'BRL', timestamp: 1}), {})
     })
   })
 })
