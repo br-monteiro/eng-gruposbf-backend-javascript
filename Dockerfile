@@ -6,4 +6,4 @@ COPY . /opt/app
 
 RUN npm install
 
-ENTRYPOINT [ "npm", "run", "start" ]
+CMD ["npm", "start"]
