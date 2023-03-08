@@ -122,7 +122,7 @@ curl --request GET 'http://my-service-converter.com/api/v1/convert/USD/abc123'
 
 Esta roda retorna `status code 500` quando não foi possível, por algum motivo, realizar a conversão.
 
-### Monitoraremento
+### Monitoramento
 Em uma aplicação real de produção é primordial que se tenha monitoramento dos recursos, das exceções, erros, etc relacionados à aplicação. Recomenda-se uma biblioteca ou serviço dedicado à isso, por exemplo:
 
 1. Prometheus + Grafana
